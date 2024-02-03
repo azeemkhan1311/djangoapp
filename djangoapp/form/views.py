@@ -3,9 +3,6 @@ from datetime import datetime
 import os
 import json
 
-# Create your views here.
-def index(request):
-    return render(request, 'home.html')
 
 def currentDate():
     return datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -13,6 +10,8 @@ def currentDate():
 def home_view(request):
     our_date = currentDate()
     return render(request, 'home.html', {'our_date': our_date})
+
+
 
 def form_view(request):
     if request.method == 'POST':
@@ -28,10 +27,24 @@ def form_view(request):
 
         with open(json_file_path) as json_file:
             users = json.load(json_file)
-            users.append({'name': name, 'email': email, 'phone': phone})
+      
+        
+
+        users.append({'name': name, 'email': email, 'phone': phone})
             
             # writing json file
-            with open(json_file_path, 'w') as json_file:
+        with open(json_file_path, 'w') as json_file:
                 json.dump(users, json_file, indent=2)
 
+        # Display on new page
+        return render(request, 'data.html', {'name': name, 'email': email, 'phone': phone})
     return render(request, 'form.html')
+
+
+def users_view(request):
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    json_file_path = os.path.join(current_directory, './templates/data.json')
+    with open(json_file_path) as json_file:
+        users = json.load(json_file)
+    return render(request, 'user.html',{'users': users})
+

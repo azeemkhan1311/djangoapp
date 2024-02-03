@@ -1,65 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-    </head>
-    <style>
-        .mycont {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60vh;
-  margin: 30px;
-}
-.container{
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form page</title>
+</head>
+<style>
+  .mycont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    margin: 30px;
+  }
+
+  .container {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    /* background-color:#DCDCDC; */
     padding: 50px;
-}
-         form {
-           
-            padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-            
+  }
 
-        }
- 
-        label {
-            display: block;
-            margin-bottom: 8px;
-        }
+  form {
 
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-        }
+    {% comment %} padding: 20px; {% endcomment %}
+    border-radius: 8px;
+    width: 300px;
 
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-       
-    </style>
-    <body>
-    {% include 'base.html' %}
-    <div class="mycont">
+
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+</style>
+
+<body>
+  {% include 'base.html' %}
+  <div class="mycont">
     <div class="container">
-        <form action="#" method = "POST">
+      <form action="{% url 'form_view' %}" method="POST">
+        {% csrf_token %}
         <div class="row">
           <div class="col-25">
             <label for="name">Name</label>
           </div>
           <div class="col-75">
-            <input type="text" id="name" name="fname" placeholder="Your name..">
+            <input type="text" id="name" name="name" placeholder="Your name..">
           </div>
         </div>
         <div class="row">
@@ -67,7 +70,7 @@
             <label for="email">Email</label>
           </div>
           <div class="col-75">
-            <input type="text" id="email" name="myemail" placeholder="Your Email">
+            <input type="text" id="email" name="email" placeholder="Your Email">
           </div>
         </div>
         <div class="row">
@@ -75,19 +78,15 @@
             <label for="contact">Phone</label>
           </div>
           <div class="col-75">
-            <input type="text" id="phone" name="mycontact" placeholder="Your contact">
+            <input type="text" id="phone" name="phone" placeholder="Your contact">
           </div>
         </div>
-      
+
         <button type="submit">Submit</button>
-        </form>
-      </div>
+      </form>
     </div>
+  </div>
+  {% include "footer.html" %}
 </body>
+
 </html>
-
-
-
-
-
-

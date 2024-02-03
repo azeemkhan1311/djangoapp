@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Submitted Data</title>
+</head>
+<body>
+    {% include 'base.html' %}
+    <main>
+
+        <h1>Thankyou for your submittion!</h1>
+        <p>Name: {{ name }}</p>
+        <p>Email: {{ email }}</p>
+        <p>Phone: {{ phone }}</p>
+    </main>
+    
+    {% include "footer.html" %}
+</body>
+</html>
